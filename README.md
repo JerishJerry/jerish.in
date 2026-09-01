@@ -28,8 +28,8 @@ GitHub Pages.
 
 | | |
 |---|---|
-| **First visit** | 67 KB across 4 requests |
-| **JavaScript** | 2 KB gzipped, one file, for the contact form only |
+| **First visit** | 65 KB across 4 requests |
+| **JavaScript** | 5 KB inline, no separate request — scroll reveals, nav state, contact form |
 | **Third-party requests** | none — fonts, images and styles are all self-hosted |
 | **Rendering** | no client-side rendering; full content in the HTML response |
 | **Accessibility** | semantic landmarks, alt text, visible focus rings, `prefers-reduced-motion` honoured |
@@ -47,7 +47,9 @@ online for years:
   as `woff2` subsets split by `unicode-range`, so a visitor downloads only the
   glyph ranges the page actually uses
 - **Images** — WebP, with `width`/`height` set to reserve layout space
-- **JavaScript** — `assets/site.js` only, for contact-form delivery
+- **JavaScript** — one inline IIFE at the end of `index.html`: scroll-driven
+  reveals, reading-progress bar, active-section nav, magnetic buttons and
+  contact-form delivery. No separate request, no dependencies.
 
 ## Project structure
 
@@ -56,9 +58,9 @@ online for years:
 ├── index.html      entire page — markup, design tokens, component CSS
 ├── 404.html        not-found page, styled to match
 ├── assets/
-│   ├── site.js     contact-form delivery (the only JavaScript on the site)
-│   ├── *.woff2     Archivo subsets
-│   └── *.webp      portrait
+│   ├── archivo-latin.woff2      Archivo subset — latin
+│   ├── archivo-latin-ext.woff2  Archivo subset — latin extended
+│   └── portrait.webp            portrait
 ├── uploads/        downloadable resume (.docx)
 ├── og.png          1200×630 social preview card
 ├── favicon.svg     JD monogram
@@ -112,26 +114,18 @@ custom domain, so it survives redeploys.
 
 ## Contact form
 
-`assets/site.js` handles submission and supports two delivery modes.
+Submission is handled by the inline script at the bottom of `index.html`. It
+intercepts the submit event and opens the visitor's mail client with the
+subject and body prefilled from the form fields — no third-party service, no
+account, and no visitor data leaves their machine until they press send.
 
-**`mailto:` — the current default.** Opens the visitor's mail client with the
-message prefilled. No third-party service, no account, and no visitor data
-leaves their machine until they press send.
+The browser enforces the `required` fields and the `type="email"` format before
+the handler runs. Email, phone and LinkedIn are also listed as plain links, so
+the form is never the only route to a reply.
 
-**Background POST.** For a form that submits without leaving the page, get a free
-access key from [Web3Forms](https://web3forms.com) and add it to the `<form>`
-tag in `index.html`:
-
-```html
-<form data-access-key="your-key-here" style="...">
-```
-
-`site.js` detects the key and switches to a background POST, falling back to
-`mailto:` if the request fails.
-
-Either way the form validates required fields, carries a honeypot field for
-bots, and reports status inline. Email, phone and LinkedIn are also listed as
-plain links, so the form is never the only route to a reply.
+To swap in a background POST instead, replace the `submit` handler at the end of
+`index.html` with a `fetch()` to the endpoint of your choice — the fields are
+already named `name`, `email` and `message`.
 
 ## How this was built
 
@@ -156,6 +150,19 @@ Preparing it for production meant:
 
 The prerendered output was diffed against the original render and matched on
 text content, document height and the geometry of all 16 page sections.
+
+### 2026 redesign
+
+The page was then rebuilt around a single-column editorial layout: a sticky
+reading-progress bar, section headings that unmask on scroll, animated stat
+counters, magnetic buttons and a dark closing call-to-action.
+
+The motion layer is plain DOM — an `IntersectionObserver` for reveals with a
+scroll-position sweep as fallback, plus a set of timed catch-up passes so the
+page always ends up fully revealed even if the observer never fires. Every
+effect is gated on `prefers-reduced-motion`, which short-circuits straight to
+the final state. `assets/site.js` was folded into the inline script and removed,
+and the unused third Archivo subset was dropped.
 
 ## Content
 
