@@ -4,7 +4,7 @@
 
 **Personal portfolio site for Jerish David — Data Analyst**
 
-[![live](https://img.shields.io/badge/live-jerish.in-ec3013?style=flat-square)](https://jerish.in)
+[![live](https://img.shields.io/badge/live-jerish.in-b68235?style=flat-square)](https://jerish.in)
 [![pages](https://img.shields.io/github/deployments/JerishJerry/jerish.in/github-pages?label=pages&style=flat-square)](https://github.com/JerishJerry/jerish.in/deployments)
 [![dependencies](https://img.shields.io/badge/dependencies-none-2ea44f?style=flat-square)](#tech-stack)
 [![last commit](https://img.shields.io/github/last-commit/JerishJerry/jerish.in?style=flat-square)](https://github.com/JerishJerry/jerish.in/commits/main)
@@ -19,18 +19,18 @@
 
 ## Overview
 
-A single-page portfolio covering professional summary, experience, technical
-skills, education and contact — plus a downloadable resume.
+A single-page portfolio covering services, experience, technical
+skills, selected work and contact — plus a downloadable resume.
 
 Built as plain static HTML and CSS. No framework, no bundler, no build step, no
-package manager, and no third-party scripts. Deploys on push to `main` via
-GitHub Pages.
+package manager, and no third-party scripts except one Google Fonts stylesheet.
+Deploys on push to `main` via GitHub Pages.
 
 | | |
 |---|---|
-| **First visit** | 65 KB across 4 requests |
+| **First visit** | ~90 KB across 5 requests (HTML + portrait + Google Fonts) |
 | **JavaScript** | 5 KB inline, no separate request — scroll reveals, nav state, contact form |
-| **Third-party requests** | none — fonts, images and styles are all self-hosted |
+| **Third-party requests** | Google Fonts only (`fonts.googleapis.com` / `fonts.gstatic.com`) — fonts, images and styles otherwise self-hosted |
 | **Rendering** | no client-side rendering; full content in the HTML response |
 | **Accessibility** | semantic landmarks, alt text, visible focus rings, `prefers-reduced-motion` honoured |
 | **SEO** | canonical URL, meta description, Open Graph + Twitter cards, JSON-LD `Person` schema, sitemap |
@@ -43,9 +43,10 @@ online for years:
 - **HTML** — one prerendered document, content inline
 - **CSS** — a design-token layer (`:root` custom properties for colour ramps,
   type scale and spacing) plus component classes, in a `<style>` block
-- **Type** — [Archivo](https://fonts.google.com/specimen/Archivo), self-hosted
-  as `woff2` subsets split by `unicode-range`, so a visitor downloads only the
-  glyph ranges the page actually uses
+- **Type** — [Playfair Display](https://fonts.google.com/specimen/Playfair+Display)
+  for display serif plus [Montserrat](https://fonts.google.com/specimen/Montserrat)
+  for body, loaded from Google Fonts with `preconnect`. Colours: paper `#f3f2f2`,
+  ink `#201f1d`, gold `#b68235` / `#e1ad66`, dark hero `#191715`.
 - **Images** — WebP, with `width`/`height` set to reserve layout space
 - **JavaScript** — one inline IIFE at the end of `index.html`: scroll-driven
   reveals, reading-progress bar, active-section nav, magnetic buttons and
@@ -58,9 +59,7 @@ online for years:
 ├── index.html      entire page — markup, design tokens, component CSS
 ├── 404.html        not-found page, styled to match
 ├── assets/
-│   ├── archivo-latin.woff2      Archivo subset — latin
-│   ├── archivo-latin-ext.woff2  Archivo subset — latin extended
-│   └── portrait.webp            portrait
+│   └── portrait.webp            portrait (sepia-treated, gold-disc hero)
 ├── uploads/        downloadable resume (.docx)
 ├── og.png          1200×630 social preview card
 ├── favicon.svg     JD monogram
@@ -151,7 +150,17 @@ Preparing it for production meant:
 The prerendered output was diffed against the original render and matched on
 text content, document height and the geometry of all 16 page sections.
 
-### 2026 redesign
+### Classical redesign (v2, current)
+
+The live page is the Classical redesign: a dark `#191715` hero with a gold-disc
+portrait, Playfair Display italic accent, a six-cell services grid, sticky
+experience entries, a core-stack band plus category rows for skills, a two-card
+selected-work section (Home Board mobile app, THAARA studio site), and a dark
+contact band with a mail-draft form. Motion (reveals, name rise, portrait
+unmask, stat counters, progress bar, magnetic buttons) is the same inline IIFE
+pattern, retuned for the gold palette and gated on `prefers-reduced-motion`.
+
+### 2026 rebuild (v1, retired)
 
 The page was then rebuilt around a single-column editorial layout: a sticky
 reading-progress bar, section headings that unmask on scroll, animated stat

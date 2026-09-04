@@ -5,34 +5,38 @@
 <title>Page not found — Jerish David</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap">
 <style>
-  @font-face { font-family:'Archivo'; font-weight:400 800; font-display:swap;
-    src:url("/assets/archivo-latin.woff2") format('woff2'); }
-  :root { --bg:#f3f2f2; --text:#201e1d; --accent:#ec3013; --accent-700:#ae1800; }
+  :root { --bg:#f3f2f2; --text:#201f1d; --accent:#b68235; --accent-soft:#e1ad66; --accent-700:#7d5411; --dark:#191715; }
   *,*::before,*::after { box-sizing:border-box; }
   body { margin:0; min-height:100vh; display:flex; align-items:center;
     background:var(--bg); color:var(--text);
-    font-family:'Archivo',system-ui,sans-serif; }
-  main { max-width:1200px; margin:0 auto; padding:0 clamp(20px,5vw,72px); }
-  .code { font-size:13px; line-height:14px; letter-spacing:.08em;
+    font-family:'Montserrat',system-ui,sans-serif; }
+  main { max-width:1240px; margin:0 auto; padding:0 clamp(20px,5vw,72px); }
+  .code { font-size:11.5px; font-weight:600; line-height:1.5; letter-spacing:.17em;
     text-transform:uppercase; color:var(--accent-700); margin:0 0 28px; }
-  h1 { font-weight:800; font-size:clamp(40px,6vw,80px); line-height:1.04;
-    letter-spacing:-.03em; margin:0 0 0 -.058em; }
-  p.lead { font-size:17px; line-height:28px; max-width:52ch; margin:28px 0 0; }
+  h1 { font-family:'Playfair Display',Georgia,serif; font-weight:400; font-size:clamp(40px,6vw,80px); line-height:1.04;
+    letter-spacing:-.015em; margin:0 0 0 -.03em; }
+  h1 em { color:var(--accent-soft); }
+  p.lead { font-size:17px; line-height:1.74; max-width:52ch; margin:28px 0 0; color:rgba(32,31,29,.78); }
   .row { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
-  a.btn { display:inline-flex; align-items:center; font-weight:800; font-size:14px;
-    line-height:1.2; padding:8px 15px; text-decoration:none; }
-  .primary { background:var(--accent); color:var(--bg); }
-  .primary:hover { background:#dd2b0f; }
-  .ghost { color:var(--accent); border:1px solid color-mix(in srgb,var(--text) 40%,transparent); }
-  .ghost:hover { background:color-mix(in srgb,var(--accent) 10%,transparent); }
+  a.btn { display:inline-flex; align-items:center; font-weight:600; font-size:12px; letter-spacing:.15em; text-transform:uppercase;
+    line-height:1.2; padding:14px 26px; border-radius:4px; text-decoration:none; }
+  .primary { background:transparent; color:var(--accent-soft); border:1px solid var(--accent); }
+  .primary:hover { background:rgba(225,173,102,.15); border-color:var(--accent-soft); }
+  .ghost { color:var(--text); border:1px solid rgba(32,31,29,.25); }
+  .ghost:hover { border-color:rgba(32,31,29,.6); background:rgba(32,31,29,.05); }
+  .band { display:block; width:56px; height:2px; background:var(--accent); margin:0 0 28px; }
 </style>
 </head>
 <body>
   <main>
     <p class="code">Error 404</p>
+    <span class="band"></span>
     <h1>Page not found.</h1>
-    <p class="lead">That link does not lead anywhere. The portfolio, experience and
+    <p class="lead">That link does not lead anywhere. Services, experience, skills, selected work and
       contact details all live on the home page.</p>
     <div class="row">
       <a class="btn primary" href="/">Back to home</a>
