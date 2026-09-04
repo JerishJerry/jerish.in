@@ -1,0 +1,7 @@
+# OS / editor junk — keep the repo clean
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.vscode/
