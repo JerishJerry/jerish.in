@@ -42,6 +42,7 @@ a:hover{color:#7d5411}
 ::selection{background:rgba(182,130,53,.3)}
 @keyframes jd-flicker{0%,100%{opacity:1}50%{opacity:.3}}
 @media (max-width:819px){[data-navlinks]{display:none !important}}
+@media (max-width:719px){.splitrow{grid-template-columns:minmax(0,1fr) !important}.splitrow>:first-child{position:static !important}}
 @media print{nav{display:none !important}[data-reveal]{opacity:1 !important;transform:none !important}}
 .h-res:hover{background:rgba(225,173,102,.14) !important;border-color:#e1ad66 !important;color:#e1ad66 !important}
 .h-gold:hover{background:rgba(225,173,102,.15) !important;border-color:#e1ad66 !important}
@@ -76,7 +77,7 @@ a:hover{color:#7d5411}
 </nav>
 
 <header id="top" style="background:#191715;color:#f3f2f2">
-  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,84px) clamp(20px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:clamp(28px,4vw,60px);align-items:end">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,84px) clamp(20px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(28px,4vw,60px);align-items:end">
     <div>
       <p data-reveal style="display:flex;align-items:center;gap:11px;font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#e1ad66;margin:0 0 clamp(24px,3vw,34px)">
         <span style="width:6px;height:6px;background:#b68235;border-radius:50%;display:block;animation:jd-flicker 3s ease-in-out infinite"></span>
@@ -160,7 +161,7 @@ a:hover{color:#7d5411}
 
 <section id="experience" style="border-top:1px solid rgba(32,31,29,.16)">
   <div style="max-width:1240px;margin:0 auto;padding:clamp(52px,6vw,92px) clamp(20px,5vw,72px)">
-    <div style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:clamp(24px,4vw,64px);align-items:start;padding-bottom:clamp(38px,4.6vw,60px)">
+    <div class="splitrow" style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:clamp(24px,4vw,64px);align-items:start;padding-bottom:clamp(38px,4.6vw,60px)">
       <p data-reveal style="font-size:11.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#7d5411;margin:0;font-feature-settings:'tnum'">Straive · Green Street</p>
       <div>
         <p data-reveal style="font-size:11.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#7d5411;margin:0 0 18px;font-feature-settings:'tnum'">02 — Experience</p>
@@ -170,7 +171,7 @@ a:hover{color:#7d5411}
       </div>
     </div>
 
-    <article style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:clamp(20px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:clamp(34px,4.2vw,54px) 0">
+    <article class="splitrow" style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:clamp(20px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:clamp(34px,4.2vw,54px) 0">
       <div data-reveal style="align-self:start;position:sticky;top:92px">
         <p style="font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:46px;line-height:1;color:rgba(32,31,29,.2);margin:0 0 18px;font-feature-settings:'tnum'">01</p>
         <p style="font-size:11.5px;font-weight:600;line-height:1.7;letter-spacing:.12em;text-transform:uppercase;color:#201f1d;margin:0;font-feature-settings:'tnum'">09/2024 – Present</p>
@@ -191,7 +192,7 @@ a:hover{color:#7d5411}
       </div>
     </article>
 
-    <article style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:clamp(20px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding-top:clamp(34px,4.2vw,54px)">
+    <article class="splitrow" style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:clamp(20px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding-top:clamp(34px,4.2vw,54px)">
       <div data-reveal style="align-self:start;position:sticky;top:92px">
         <p style="font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:46px;line-height:1;color:rgba(32,31,29,.2);margin:0 0 18px;font-feature-settings:'tnum'">02</p>
         <p style="font-size:11.5px;font-weight:600;line-height:1.7;letter-spacing:.12em;text-transform:uppercase;color:#201f1d;margin:0;font-feature-settings:'tnum'">03/2024 – 09/2024</p>
@@ -225,23 +226,23 @@ a:hover{color:#7d5411}
     </div>
 
     <div style="display:flex;flex-direction:column">
-      <div data-reveal style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:22px 0">
+      <div data-reveal class="splitrow" style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:22px 0">
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:18px;line-height:1.4;margin:0">SQL &amp; data workflows</h3>
         <p style="font-size:16px;line-height:1.74;margin:0;max-width:74ch;color:rgba(32,31,29,.78)">Joins, aggregations, subqueries, CTEs and window functions · query optimization · relational databases · ETL, extraction and staging · pipeline and reporting automation</p>
       </div>
-      <div data-reveal style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:22px 0">
+      <div data-reveal class="splitrow" style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:22px 0">
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:18px;line-height:1.4;margin:0">Excel &amp; automation</h3>
         <p style="font-size:16px;line-height:1.74;margin:0;max-width:74ch;color:rgba(32,31,29,.78)">Pivot tables · XLOOKUP, INDEX/MATCH, SUMIFS · Power Query · template-driven reporting · scenario and what-if analysis · macros and VBA (working knowledge)</p>
       </div>
-      <div data-reveal style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:22px 0">
+      <div data-reveal class="splitrow" style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:22px 0">
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:18px;line-height:1.4;margin:0">BI &amp; visualization</h3>
         <p style="font-size:16px;line-height:1.74;margin:0;max-width:74ch;color:rgba(32,31,29,.78)">DAX measures and calculated columns · star-schema data modeling · interactive dashboards · KPI and metrics reporting · visual analytics and data storytelling</p>
       </div>
-      <div data-reveal style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:22px 0">
+      <div data-reveal class="splitrow" style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);padding:22px 0">
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:18px;line-height:1.4;margin:0">Analytical methods</h3>
         <p style="font-size:16px;line-height:1.74;margin:0;max-width:74ch;color:rgba(32,31,29,.78)">Exploratory data analysis and data profiling · descriptive statistics · trend, variance and correlation analysis · outlier and anomaly detection · segmentation · root cause analysis · forecast inputs</p>
       </div>
-      <div data-reveal style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);border-bottom:1px solid rgba(32,31,29,.16);padding:22px 0">
+      <div data-reveal class="splitrow" style="display:grid;grid-template-columns:minmax(0,240px) minmax(0,3fr);gap:8px clamp(24px,4vw,64px);border-top:1px solid rgba(32,31,29,.16);border-bottom:1px solid rgba(32,31,29,.16);padding:22px 0">
         <h3 style="font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:18px;line-height:1.4;margin:0">Quality &amp; governance</h3>
         <p style="font-size:16px;line-height:1.74;margin:0;max-width:74ch;color:rgba(32,31,29,.78)">Data quality checks, validation and reconciliation · metric definition and standardization · data governance, security and privacy awareness · documentation · requirements gathering and stakeholder communication · mentoring</p>
       </div>
@@ -329,10 +330,10 @@ a:hover{color:#7d5411}
       <p style="font-size:11.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#e1ad66;margin:0;font-feature-settings:'tnum'">05 — Contact</p>
       <h2 style="font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:clamp(30px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em;margin:0">Let's talk data</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,72px);align-items:start">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(32px,4vw,72px);align-items:start">
       <div data-reveal>
         <p style="font-size:17px;line-height:1.74;max-width:38ch;margin:0 0 clamp(26px,3vw,34px);color:rgba(243,242,242,.78)">Considering Data Analyst roles for 2026 — Bengaluru, Thiruvananthapuram, hybrid and remote.</p>
-        <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:0">
+        <dl style="margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0;overflow-wrap:anywhere">
           <dt style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,242,242,.55);border-top:1px solid rgba(243,242,242,.18);padding:15px 30px 15px 0">Email</dt>
           <dd style="font-size:16px;margin:0;border-top:1px solid rgba(243,242,242,.18);padding:15px 0"><a class="h-link" href="mailto:jerishdavid23@gmail.com" style="color:#f3f2f2;border-bottom:1px solid rgba(225,173,102,.5);transition:border-color .2s ease,color .2s ease">jerishdavid23@gmail.com</a></dd>
           <dt style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,242,242,.55);border-top:1px solid rgba(243,242,242,.18);padding:15px 30px 15px 0">Phone</dt>
