@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600&display=swap">
 <style>
 html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-font-smoothing:antialiased}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}[data-menu],[data-burger],[data-burger]::before,[data-burger]::after{transition:none !important}}
 body{margin:0;background:#f3f2f2;color:#201f1d;font-family:'Montserrat',system-ui,sans-serif;text-wrap:pretty;font-size:16px;line-height:1.62;overflow-x:clip}
 *,*::before,*::after{box-sizing:border-box}
 a{color:#201f1d;text-decoration:none}
@@ -41,9 +41,23 @@ a:hover{color:#7d5411}
 :focus-visible{outline:2px solid #b68235;outline-offset:2px}
 ::selection{background:rgba(182,130,53,.3)}
 @keyframes jd-flicker{0%,100%{opacity:1}50%{opacity:.3}}
+[data-navtoggle]{display:none;align-items:center;justify-content:center;width:46px;height:46px;margin-right:-12px;padding:0;background:none;border:0;color:#f3f2f2;cursor:pointer}
+[data-burger]{position:relative;display:block;width:22px;height:1.5px;background:currentColor;transition:background .2s ease}
+[data-burger]::before,[data-burger]::after{content:"";position:absolute;left:0;width:22px;height:1.5px;background:currentColor;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+[data-burger]::before{transform:translateY(-7px)}
+[data-burger]::after{transform:translateY(7px)}
+[data-navtoggle][aria-expanded="true"] [data-burger]{background:transparent}
+[data-navtoggle][aria-expanded="true"] [data-burger]::before{transform:rotate(45deg)}
+[data-navtoggle][aria-expanded="true"] [data-burger]::after{transform:rotate(-45deg)}
+[data-menu]{position:fixed;inset:0;background:#191715;padding:calc(68px + 5vh) clamp(20px,5vw,72px) 40px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s}
+[data-menu][data-open]{opacity:1;visibility:visible;transition:opacity .3s ease}
+[data-menuitem]{display:flex;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid rgba(243,242,242,.14);font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:clamp(27px,7.2vw,36px);line-height:1.12;color:#f3f2f2;transition:color .2s ease}
+[data-menuitem] i{font-style:normal;font-family:'Montserrat',system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;color:rgba(225,173,102,.75);min-width:26px}
+[data-menuitem]:hover,[data-menuitem]:focus-visible{color:#e1ad66}
+@media (min-width:820px){[data-menu]{display:none}}
 .tap{position:relative}
 .tap::after{content:"";position:absolute;left:0;right:0;top:-15px;bottom:-15px}
-@media (max-width:819px){[data-navlinks]{display:none !important}nav{background:#191715 !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}.splitrow{grid-template-columns:minmax(0,1fr) !important}.splitrow>:first-child{position:static !important}}
+@media (max-width:819px){[data-navlinks]{display:none !important}[data-navtoggle]{display:inline-flex}nav{background:#191715 !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}.splitrow{grid-template-columns:minmax(0,1fr) !important}.splitrow>:first-child{position:static !important}}
 @media (max-width:479px){.cdl{grid-template-columns:minmax(0,1fr) !important}.cdl dt{padding:15px 0 4px 0 !important}.cdl dd{border-top:0 !important;padding-top:0 !important}}
 @media print{nav{display:none !important}[data-reveal]{opacity:1 !important;transform:none !important}}
 .h-res:hover{background:rgba(225,173,102,.14) !important;border-color:#e1ad66 !important;color:#e1ad66 !important}
@@ -58,7 +72,14 @@ a:hover{color:#7d5411}
 <body>
 
 <nav style="position:sticky;top:0;z-index:40;background:rgba(25,23,21,.92);backdrop-filter:saturate(1.2) blur(12px);-webkit-backdrop-filter:saturate(1.2) blur(12px);border-bottom:1px solid rgba(243,242,242,.14)">
-  <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);height:68px;display:flex;align-items:center;gap:clamp(16px,2.4vw,34px)">
+  <div id="jd-menu" data-menu>
+    <a data-menuitem href="#services"><i>01</i>Services</a>
+    <a data-menuitem href="#experience"><i>02</i>Experience</a>
+    <a data-menuitem href="#skills"><i>03</i>Skills</a>
+    <a data-menuitem href="#work"><i>04</i>Work</a>
+    <a data-menuitem href="#contact"><i>05</i>Contact</a>
+  </div>
+  <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);height:68px;display:flex;align-items:center;gap:clamp(16px,2.4vw,34px);position:relative">
     <a href="#top" style="margin-right:auto;display:flex;align-items:baseline;gap:11px;color:#f3f2f2;padding:12px 0">
       <span style="font-family:'Playfair Display',Georgia,serif;font-size:23px;font-weight:600;letter-spacing:.01em;line-height:1">JD</span>
       <span style="font-size:11.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:rgba(243,242,242,.58)">Data Analyst</span>
@@ -74,6 +95,7 @@ a:hover{color:#7d5411}
       <span>Résumé</span>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>
     </a>
+    <button type="button" data-navtoggle aria-expanded="false" aria-controls="jd-menu" aria-label="Open menu"><span data-burger></span></button>
   </div>
   <div data-progress style="height:1px;width:0%;background:#b68235;margin-bottom:-1px;position:relative;z-index:1"></div>
 </nav>
@@ -493,6 +515,52 @@ a:hover{color:#7d5411}
     ticking = true;
     requestAnimationFrame(function () { ticking = false; measure(); });
   }
+  var navToggle = document.querySelector('[data-navtoggle]');
+  var navMenu = document.getElementById('jd-menu');
+  var menuItems = q('[data-menuitem]');
+  function menuOpen() { return !!navToggle && navToggle.getAttribute('aria-expanded') === 'true'; }
+  function setMenu(open, restore) {
+    if (!navToggle || !navMenu) return;
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (open) navMenu.setAttribute('data-open', ''); else navMenu.removeAttribute('data-open');
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      void navMenu.offsetHeight;
+      if (menuItems[0]) menuItems[0].focus();
+    } else if (restore !== false) {
+      navToggle.focus();
+    }
+  }
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function () { setMenu(!menuOpen()); });
+    menuItems.forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false, false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!menuOpen()) return;
+      if (e.key === 'Escape' || e.key === 'Esc') { setMenu(false); return; }
+      if (e.key !== 'Tab') return;
+      var f = [navToggle].concat(menuItems);
+      var i = f.indexOf(document.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 819 && menuOpen()) setMenu(false, false);
+    });
+  }
+
+  var homeLink = document.querySelector('a[href="#top"]');
+  if (homeLink) {
+    homeLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (menuOpen()) setMenu(false, false);
+      window.scrollTo(0, 0);
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+    });
+  }
+
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   onScroll();
